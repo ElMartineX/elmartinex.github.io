@@ -1,12 +1,483 @@
+index.html e Type HTML Size 20 KB (20,799 bytes) Storage used 20 KB (20,799 bytes) Location My Drive Owner me Modified May 24, 2015 by me Opened 11:46 PM by me Created May 27, 2015 Add a description Viewers can download
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
-    <title>Eddie Martinez, 2018</title>
+    <link rel="stylesheet" type="text/css" href="css/menuxc.css" />
+    <link rel="stylesheet" type="text/css" href="css/microstyles.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrapx.min.css" />
+    <title>Exodus Films, LLC | Copyright, 2015 | All Rights Reserved</title>
+    <script src="js/jqueryx1.9.1.min.js"></script>
+    <script src="js/cxMenu.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+        
+        body {
+            background-color: #050505;
+            background: rgb(43, 45, 48);
+            background: -moz-radial-gradient(center, ellipse cover, rgba(43, 45, 48, 1) 0%, rgba(0, 0, 0, 1) 100%);
+            /* FF3.6+ */
+            background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(43, 45, 48, 1)), color-stop(100%, rgba(0, 0, 0, 1)));
+            /* Chrome,Safari4+ */
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(43, 45, 48, 1) 0%, rgba(0, 0, 0, 1) 100%);
+            /* Chrome10+,Safari5.1+ */
+            background: -o-radial-gradient(center, ellipse cover, rgba(43, 45, 48, 1) 0%, rgba(0, 0, 0, 1) 100%);
+            /* Opera 12+ */
+            background: -ms-radial-gradient(center, ellipse cover, rgba(43, 45, 48, 1) 0%, rgba(0, 0, 0, 1) 100%);
+            /* IE10+ */
+            background: radial-gradient(ellipse at center, rgba(43, 45, 48, 1) 0%, rgba(0, 0, 0, 1) 100%);
+            /* W3C */
+            margin: 0;
+            font-family: Monospace;
+            overflow: hidden;
+        }
+        
+        #ntMenu {
+            width: auto;
+            height: auto;
+            display: table;
+            position: absolute;
+            font-size: 10px;
+            padding: 20px;
+            line-height: 100px;
+        }
+        
+        .copy1 {
+            font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-weight: bold;
+            font-size: 44px;
+            color: rgba(254, 255, 255, 1);
+            z-index: 2;
+            position: fixed;
+            left: 5%;
+            bottom: 5%;
+        }
+        
+        .copy2 {
+            font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-weight: bold;
+            font-size: 44px;
+            color: rgba(254, 255, 255, 1);
+            z-index: 2;
+            position: fixed;
+            right: 1%;
+            bottom: 1%;
+        }
+    </style>
+    <script src="js/TweenLite.js"></script>
 </head>
 
 <body>
-    <div></div>
+    <div id="struct">
+        <span class="copy1">
+        E MARTINEZ | <a href="js/design3d.js" target="_blank" style="color:#6f0000; text-decoration: no-underline"> D3DJS</a>
+        </span>
+        <script src="js/design3d.js"></script>
+        <script src="js/helvetiker_regular.typeface.js"></script>
+        <script type="text/javascript">
+            var fURL = '//www.exodusfilmsltd.com/images/bg/resi.jpg';
+            var menuElem1;
+            var menuElem2;
+            var non3Dcontext;
+            var camera;
+            var cubeCamera;
+            var scene;
+            var renderer;
+            var cssRenderer;
+            var cube;
+            var sphere0;
+            var sphere1;
+            var sphere2;
+            var sphere3;
+            var sphere4;
+            var sphere5;
+            var sphere6;
+            var sphere7;
+            var sphere8;
+            var sphere9;
+            var torus;
+            var spheres = [];
+            var sphereSet = function(id, modeON, multiON, cnt, ht) {
+                return {
+                    sphereID: id,
+                    xisPaused: modeON,
+                    isMultiple: multiON,
+                    MultipleCount: cnt,
+                    lHeight: ht
+                }
+            }
+
+            var touchX;
+            var touchY;
+            var isUserInteracting = false;
+            var fov = 70;
+            var lon = 0;
+            var lat = 0;
+            var phi = 0;
+            var theta = 0;
+            var onMouseDownLon = 0;
+            var onMouseDownMouseX = 0;
+            var onMouseDownMouseY = 0;
+            var onMouseDownLat = 0;
+            var onPointerDownPointerX = 0;
+            var onPointerDownPointerY = 0;
+            var onPointerDownLat = 0;
+            var onPointerDownLon = 0;
+            var menuObject = {};
+            var ON_MENU_OPEN = 'menu opened';
+            var ON_MENU_CLOSED = 'menu closed';
+            var ON_MENU_INIT = 'menu initialized';
+            //----------------------------------------------------------------------------------------------------------------|
+            var texture = THREE.ImageUtils.loadTexture(
+                fURL,
+                /**
+                 * !(material.map)
+                 * !(material.map.mapping instanceof THREE.UVMapping)
+                 *      _uvs = element.uvs;
+                 *       patternPath
+                 *       (
+                 *       _v1x, _v1y,
+                 *       _v2x, _v2y,
+                 *       _v3x, _v3y,
+                 *       _uvs[ uv1 ].x,
+                 *       _uvs[ uv1 ].y,
+                 *       _uvs[ uv2 ].x,
+                 *       _uvs[ uv2 ].y,
+                 *       _uvs[ uv3 ].x,
+                 *       _uvs[ uv3 ].y,
+                 *       material.map
+                 *       )
+                 **/
+                new THREE.UVMapping(),
+                function() {
+                    init();
+                    animate();
+                }
+            );
+            //----------------------------------------------------------------------------------------------------------------|
+            function init() {
+
+                menuElem2 = document.getElementById("struct");
+                camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, -200, 1000);
+                scene = new THREE.Scene();
+                var radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength;
+                radius = 900;
+                widthSegments = Math.max(16, Math.floor(widthSegments) || 48);
+                heightSegments = Math.max(16, Math.floor(heightSegments) || 48);
+                phiStart = 0;
+                phiLength = Math.PI * 2;
+                thetaStart = 0;
+                thetaLength = Math.PI;
+                var mesh = new THREE.Mesh(
+                    /**
+                     * @radius         --| Whole---------> | Radius   | Default: 500px
+                     * @widthSegments  --| Segments------> | Widths   | Default: 60 Segments @ 500 PX
+                     * @heightSegments --| Segments------> | Heights  | Default: 40 Segments @ 500 PX
+                     * @phiStart       --| PI...N1-------> | Start At | Default: ^
+                     * @phiLength      --| PI...NX-------> | End At   | Default: ^
+                     * @thetaStart     --| PI...T1-------> | Start At | Default: ^
+                     * @thetaLength    --| PI...TX-------> | End At   | Default: ^
+                     * (500, 60, 40)
+                     * @radius:          radius || 50;
+                     * @widthSegments:   Math.max(3, Math.floor(widthSegments) || 8);
+                     * @heightSegments:  Math.max(2, Math.floor(heightSegments) || 6);
+                     * @phiStart:        phiStart !== undefined ? phiStart : 0;
+                     * @phiLength:       phiLength !== undefined ? phiLength : Math.PI * 2;
+                     * @thetaStart:      thetaStart !== undefined ? thetaStart : 0;
+                     * @thetaLength:     thetaLength !== undefined ? thetaLength : Math.PI;
+                     **/
+
+                    new THREE.SphereGeometry(radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength),
+                    new THREE.MeshBasicMaterial({
+                        map: texture
+                    })
+                )
+                scene.add(mesh);
+                mesh.scale.x = -1;
+                renderer = new THREE.WebGLRenderer({
+                    antialias: true
+                });
+                renderer.setSize(
+                    window.innerWidth,
+                    window.innerHeight
+                );
+                cubeCamera = new THREE.CubeCamera(100, 2000, 256);
+
+                /**
+                 * THREE.LinearMipMapLinearFilter
+                 * @usage:
+                 THREE.RepeatWrapping             = 1000;
+                 THREE.ClampToEdgeWrapping        = 1001;
+                 THREE.MirroredRepeatWrapping     = 1002;
+
+                 THREE.NearestFilter              = 1003;
+                 THREE.NearestMipMapNearestFilter = 1004;
+                 THREE.NearestMipMapLinearFilter  = 1005;
+                 THREE.LinearFilter               = 1006;
+                 THREE.LinearMipMapNearestFilter  = 1007;
+                 THREE.LinearMipMapLinearFilter   = 1008;
+                 **/
+                cubeCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
+                scene.add(cubeCamera);
+                document.body.appendChild(renderer.domElement);
+
+                var material = new THREE.MeshBasicMaterial({
+                    envMap: cubeCamera.renderTarget
+                });
+                //----------------------------------------------------------------------------------------------------------------|
+                var run = true;
+                var stop = false;
+                if (run) {
+                    sphere0 = new THREE.Mesh(new THREE.SphereGeometry(radius / 50, 20, 30), material);
+                    spheres = [sphere0];
+                } else if (stop) {
+                    sphere0 = new THREE.Mesh(new THREE.SphereGeometry(radius / 50, 20, 30), material);
+                    sphere1 = new THREE.Mesh(new THREE.SphereGeometry(radius / 50, 20, 30), material);
+                    spheres = [sphere0, sphere1];
+                } else if (stop) {
+                    Box0 = new THREE.Mesh(new THREE.BoxGeometry(radius / 50, radius / 50, radius / 50, radius / 50, radius / 50, radius / 50), material);
+                    spheres = [Box0];
+                } else if (stop) {
+                    Circle0 = new THREE.Mesh(new THREE.CircleGeometry(radius / 33.33, 33, 0, Math.PI * 3), material);
+                    spheres = [Circle0];
+                } else if (stop) {
+                    Cube0 = new THREE.Mesh(new THREE.CubeGeometry(10, 10, 10), material);
+                    spheres = [Cube0];
+                } else if (stop) {
+                    Cyln0 = new THREE.Mesh(new THREE.CylinderGeometry(5, 10, 20, 10, 10), material);
+                    spheres = [Cyln0];
+                } else {
+                    if (stop) {
+                        var wText = "Textured";
+                        var hash = document.location.hash.substr(1);
+                        if (hash.length !== 0) {
+                            wText = hash;
+                        }
+                        var text3d = new THREE.TextGeometry(wText, {
+                            size: 12,
+                            height: 3,
+                            curveSegments: 8,
+                            font: "helvetiker"
+                        });
+                        text3d.computeBoundingBox();
+                        var centerOffset_x = -0.5 * (text3d.boundingBox.max.x - text3d.boundingBox.min.x);
+                        var centerOffset_y = -0.5 * (text3d.boundingBox.max.y - text3d.boundingBox.min.y);
+                        var centerOffset_z = -0.5 * (text3d.boundingBox.max.z - text3d.boundingBox.min.z);
+                        var textMaterial = new THREE.MeshBasicMaterial({
+                            envMap: cubeCamera.renderTarget
+                        });
+                        var wettext = new THREE.Mesh(text3d, textMaterial);
+                        wettext.position.x = centerOffset_x / 30;
+                        wettext.position.y = centerOffset_y / 30;
+                        wettext.position.z = centerOffset_z / 30;
+                        var wgroup = new THREE.Object3D();
+                        wgroup.add(wettext);
+                        spheres = [wgroup];
+                    }
+                }
+
+                //----------------------------------------------------------------------------->
+                //BufferGeometry()
+                //TubeGeometry()
+                //TorusKnotGeometry
+                //ParametricGeometry()
+                //IcosahedronGeometry
+                //ExtrudeGeometry
+                /**
+                 * Text = 3D Text
+                 *
+                 * parameters = {
+                 *  size: size of the text ------------> Float
+                 *  height: thickness to extrude text -> Float1
+                 *  curveSegments: --------------------> Int 	 | number of points on the curves |1|
+                 *  font: FONTNAME --------------------> String
+                 *  weight: BOLD ----------------------> String
+                 *  style: ITALICS --------------------> String
+                 *  bevelEnabled: True ----------------> Boolean | turn on bevel
+                 *  bevelThickness: 0.000001 ----------> Float   | how deep into text bevel goes
+                 *  bevelSize: 0.000001 ---------------> Float   | how far from text outline is bevel
+                 *  }
+                 *
+                 **/
+                //----------------------------------------------------------------------------------------------------------------|
+                try {
+                    for (var oo = 0; oo < spheres.length; oo++) {
+                        scene.add(spheres[oo]);
+                    }
+                } catch (anything) { /*scene.add(spheres.forEach(element.name,scene));*/ }
+                //----------------------------------------------------------------------------------------------------------------|
+                document.addEventListener('mousedown', onDocumentMouseDown, false);
+                document.addEventListener('mousewheel', onDocumentMouseWheel, false);
+                document.addEventListener('DOMMouseScroll', onDocumentMouseWheel, false);
+                document.addEventListener('touchstart', onDocumentTouchStart, false);
+                document.addEventListener('touchmove', onDocumentTouchMove, false);
+                //----------------------------------------------------------------------------------------------------------------|
+                window.addEventListener('resize', onWindowResize, false);
+                //----------------------------------------------------------------------------------------------------------------|
+                onWindowResize(null);
+
+            }
+
+            function onDocumentTouchStart(event) {
+                event.preventDefault();
+                var touch = event['touches'][0];
+                touchX = touch.screenX;
+                touchY = touch.screenY;
+            }
+
+            function onDocumentTouchMove(event) {
+                event.preventDefault();
+                var touch = event['touches'][0];
+                lon -= (touch.screenX - touchX) * 0.1;
+                lat += (touch.screenY - touchY) * 0.1;
+                touchX = touch.screenX;
+                touchY = touch.screenY;
+            }
+
+            function onWindowResize(event) {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                camera.projectionMatrix.makePerspective(fov, window.innerWidth / window.innerHeight, 1, 1000);
+            }
+
+            function onDocumentMouseDown(event) {
+                event.preventDefault();
+                //----------------------------------------------------------------------------------------------------------------|
+                onPointerDownPointerX = event.clientX;
+                onPointerDownPointerY = event.clientY;
+                onPointerDownLon = lon;
+                onPointerDownLat = lat;
+                //----------------------------------------------------------------------------------------------------------------|
+                document.addEventListener('mousemove', onDocumentMouseMove, false);
+                document.addEventListener('mouseup', onDocumentMouseUp, false);
+                for (var yt = 0; yt < spheres.length; yt++) {
+
+                    spheres[yt].position.x = Math.sin(time * 0.000009 + 1.99) * 6.67;
+                    spheres[yt].position.y = Math.sin(time * 0.000011 + 1.99) * 6.67;
+                    spheres[yt].position.z = Math.sin(time * 0.000012 + 1.99) * 6.67;
+
+                    spheres[yt].rotation.x += event.rotateX + event.rotationPoint.x;
+                    spheres[yt].rotation.y += event.rotateX + event.rotationPoint.y;
+                    spheres[yt].rotation.z += event.rotateZ + event.rotationPoint.z;
+                    spheres[yt].rotateSpeed += 0.00199;
+                    spheres[yt].rotateByAxis(event.target.makeRotationAxis(0, 90));
+                }
+            }
+
+            function onDocumentMouseMove(event) {
+                event.preventDefault();
+                //----------------------------------------------------------------------------------------------------------------|
+                lon -= touchX * 0.1;
+                lat += touchY * 0.1;
+                //----------------------------------------------------------------------------------------------------------------|
+                lon = (event.clientX - onPointerDownPointerX) * 0.1 + onPointerDownLon;
+                lat = (event.clientY - onPointerDownPointerY) * 0.1 + onPointerDownLat;
+            }
+
+            function onDocumentMouseUp(event) {
+                event.preventDefault();
+                document.removeEventListener('mousemove', onDocumentMouseMove, false);
+                document.removeEventListener('mouseup', onDocumentMouseUp, false);
+
+            }
+
+            function onDocumentMouseWheel(event) {
+                try {
+                    if (event['wheelDeltaY']) {
+                        fov -= event['wheelDeltaY'] * 0.05;
+                    }
+                } catch (anything) {}
+                //----------------------------------------------------------------------------------------------------------------|
+                if (event.wheelDelta) {
+                    fov -= event.wheelDelta * 0.05;
+                } else if (event.detail) {
+                    fov += Math.abs(event.detail);
+                }
+                //----------------------------------------------------------------------------------------------------------------|
+                camera.projectionMatrix.makePerspective(fov, window.innerWidth / window.innerHeight, 1, 1000);
+            }
+
+            function holdRotationsOnText() {
+
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                render();
+            }
+
+            function render() {
+                var message;
+                try {
+                    calculus();
+                    animateEach();
+                    setCamera();
+                    jsbCough(1);
+                    cubeCamera.updateCubeMap(renderer, scene);
+                    jsbCough(2);
+                    renderer.render(scene, camera);
+
+                } catch (anything) {
+                    simpleTrace("render-errors: " + errorReport)
+                }
+
+            }
+
+            function calculus() {
+                var time = Date.now();
+                lon += .15;
+                lat = Math.max(-85, Math.min(85, lat));
+                phi = THREE.Math.degToRad(90 - lat);
+                theta = THREE.Math.degToRad(lon);
+            }
+
+            function animateEach() {
+                var time = Date.now();
+                for (var yt = 0; yt < spheres.length; yt++) {
+
+                    spheres[yt].position.x = Math.sin(time * 0.0009 + 1.99) * 6.67;
+                    spheres[yt].position.y = Math.sin(time * 0.0011 + 1.99) * 6.67;
+                    spheres[yt].position.z = Math.sin(time * 0.0012 + 1.99) * 6.67;
+
+                    spheres[yt].rotation.x += 0.00000199;
+                    spheres[yt].rotation.y += 0.00199;
+                    spheres[yt].rotation.z += 0.00000199;
+                }
+            }
+
+            function setCamera() {
+                var time = Date.now();
+                //----------------------------------------------------------------------------------------------------------------|
+                camera.position.x = Math.sin(phi) * Math.cos(theta);
+                camera.position.y = Math.cos(phi);
+                camera.position.z = 100 * Math.sin(phi) * Math.sin(theta);
+                camera.lookAt(scene.position);
+                //----------------------------------------------------------------------------------------------------------------|
+            }
+
+            function jsbCough(a) {
+                var time = Date.now();
+                if (a == 1) {
+                    for (var yt1 = 0; yt1 < spheres.length; yt1++) {
+                        spheres[yt1].visible = false;
+                    }
+                }
+                if (a == 2) {
+                    for (var yt = 0; yt < spheres.length; yt++) {
+                        spheres[yt].visible = true;
+                    }
+                }
+                //----------------------------------------------------------------------------------------------------------------|
+            }
+            simpleTrace = function(simpleMessage) {
+                console.log(simpleMessage)
+            }
+        </script>
+    </div>
 </body>
 
 </html>
