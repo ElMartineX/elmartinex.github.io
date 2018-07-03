@@ -69,12 +69,13 @@
 <body>
     <div id="struct">
         <span class="copy1">
-        E MARTINEZ | <a href="js/design3d.js" target="_blank" style="color:#6f0000; text-decoration: no-underline"> D3DJS</a>
+            E MARTINEZ |
+            <a href="js/design3d.js" target="_blank" style="color:#6f0000; text-decoration: no-underline"> D3DJS</a>
         </span>
         <script src="js/design3d.js"></script>
         <script src="js/helvetiker_regular.typeface.js"></script>
         <script type="text/javascript">
-            var fURL = '//www.exodusfilmsltd.com/images/bg/resi.jpg';
+            var fURL = '//elmartinex.github.io/images/bg/resi.jpg';
             var menuElem1;
             var menuElem2;
             var non3Dcontext;
@@ -186,7 +187,8 @@
                      * @thetaLength:     thetaLength !== undefined ? thetaLength : Math.PI;
                      **/
 
-                    new THREE.SphereGeometry(radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength),
+                    new THREE.SphereGeometry(radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart,
+                        thetaLength),
                     new THREE.MeshBasicMaterial({
                         map: texture
                     })
@@ -234,7 +236,8 @@
                     sphere1 = new THREE.Mesh(new THREE.SphereGeometry(radius / 50, 20, 30), material);
                     spheres = [sphere0, sphere1];
                 } else if (stop) {
-                    Box0 = new THREE.Mesh(new THREE.BoxGeometry(radius / 50, radius / 50, radius / 50, radius / 50, radius / 50, radius / 50), material);
+                    Box0 = new THREE.Mesh(new THREE.BoxGeometry(radius / 50, radius / 50, radius / 50, radius / 50,
+                        radius / 50, radius / 50), material);
                     spheres = [Box0];
                 } else if (stop) {
                     Circle0 = new THREE.Mesh(new THREE.CircleGeometry(radius / 33.33, 33, 0, Math.PI * 3), material);
